@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link href="styles/main.css" rel="stylesheet" type="text/css">
-<title>Search For Employee Page</title>
+<title>New Employee Page</title>
 </head>
 <body>
 	<div class="container">
@@ -37,14 +37,31 @@
 	<br/>
 	<br/>
 	
-	<h1>Search For Employee Page</h1>
+		<h1>New Employee Page</h1>
 	
-		<p>Search For an employee by typing any part of name, email address, phone number or department</p>
+		<p>Create a new employee</p>
 	
-	<form action="SearchEmployeePage" method="post">
+	<form action="NewEmployeePage" method="post">
 		<div class="form-group">
-  
-        	<input type="text" name="search" required class="form-control"/> <br/> <br/>
+  			<Label>Employee Id</Label>
+        	<input type="text" name="EmployeeId" class="form-control" readonly/> <br/>
+        	<Label>First Name</Label>
+        	<input type="text" name="firstName" class="form-control" /> <br/>
+        	<Label>Last Name Name</Label>
+        	<input type="text" name="lastName" class="form-control" /> <br/>
+        	<Label>Department Id</Label>
+        	<input type="text" name="dep Id" class="form-control" /> <br/>
+        	<Label>Email</Label>
+        	<input type="text" name="email" class="form-control" /> <br/>
+        	<Label>Phone Number</Label>
+        	<input type="text" name="phonenumber" class="form-control" /> <br/>
+        	<Label>Hire Date</Label>
+        	<input type="text" name="hdate" class="form-control" /> <br/>
+        	<Label>Salary</Label>
+        	<input type="text" name="salary" class="form-control" /> <br/>
+        	<Label>Comm pct</Label>
+        	<input type="text" name="cmpct" class="form-control" /> <br/>
+        	
 	  		<input type="submit" name="searchButton" value="Go" class="btn btn-secondary" /><br/>
 	  		<br/> <br/>
        </div>
