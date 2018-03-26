@@ -24,12 +24,12 @@
 	</div>
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<a class="navbar-brand" href="EmployeeList.jsp">
-    			<img src="images/logo.jpg" alt="Logo" style="width:50px;">
+    			<img src="images/hrmlogo.png" alt="Logo" style="width:50px;">
   			</a>
 		<ul class="navbar-nav">		
-			<li class="nav-item active"><a class="nav-link" href="#">Employee
+			<li class="nav-item active"><a class="nav-link" href="EmployeeList.jsp">Employee
 					List</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">New
+			<li class="nav-item"><a class="nav-link" href="NewEmployee.jsp">New
 					Employee</a></li>
 			<li class="nav-item"><a class="nav-link" href="SearchEmployee.jsp">Search
 					Employee</a></li>

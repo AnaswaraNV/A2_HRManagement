@@ -31,16 +31,12 @@ public class SearchEmployeeServlet extends HttpServlet {
      	// need to get the search value from user and proceed further 
         String Id = request.getParameter("search");
 
-        // store data in User object
-        Security credentials = new Security();
-        credentials.setSecId(Id);
-
         // check the email and password from database
-        boolean pass = DataAccess.validateCredentials(credentials);
+       // boolean pass = DataAccess.(credentials);
 
-        if (pass) {
+       // if (pass) {
         	// set User object in request object and and forward to LoginSuccess.jsp page
-            request.setAttribute("credentials", credentials );
+           // request.setAttribute("credentials", credentials );
         
             getServletContext().getRequestDispatcher("/SearchEmployeeResult.jsp")
             .forward(request, response);
@@ -50,10 +46,10 @@ public class SearchEmployeeServlet extends HttpServlet {
             //variable , then only user name can be retrieved in all the jsp pages 
             ServletContext application = getServletConfig().getServletContext();  
 
-            String userId = credentials.getSecId();  
-            application.setAttribute("userId", userId);  
+            //String userId = credentials.getSecId();  
+           //application.setAttribute("userId", userId);  
 
-        } else {
+        //} else {
         	
         	//If login not successful, show an error 
         	RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
@@ -63,10 +59,7 @@ public class SearchEmployeeServlet extends HttpServlet {
             rd.include(request, response);
             //rd.forward(request, response);
         }
-        
-    
-
-	}
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  
     		throws ServletException, IOException {

@@ -25,10 +25,8 @@ public class EmployeeListServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				throws ServletException, IOException {
 		
-	        System.out.println("here");
 	        if (request.getParameter("allEmpButton") != null) {
-	        	
-	        	System.out.println("in here");
+
 	        	//Get all employees 	
 	            empList  = DataAccess.getAllEmployees();
 	            
@@ -48,8 +46,7 @@ public class EmployeeListServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp")
 	        .forward(request, response);
             
-            System.out.println("*******here");
-            
+           
  
             //System.out.println("hows" + data_rtrvd);
 	    }

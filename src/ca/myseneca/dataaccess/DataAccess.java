@@ -95,6 +95,7 @@ public class DataAccess {
 		public static List<Employee> getAllEmployees() {
 
 			employeeList.clear();
+			
 			getEmf();
 			
 			try {
