@@ -28,7 +28,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 	
-     	// get request parameters for email and password
+     	// need to get the search value from user and proceed further 
         String Id = request.getParameter("search");
 
         // store data in User object
