@@ -17,7 +17,10 @@
 		   //*check this in future name of application
 		   String userId= (String) application.getAttribute("userId"); 
 		 %>	
-		<% out.print(userId); %> 
+		<Label style="border-bottom: 6px solid blue;
+    				background-color: lightgrey;">
+    			<%out.print(     userId);%>
+    	</Label>
 		<a href="Logout.jsp"> <img border="0" alt="logout"
 			src="images/logout.jpg" width="20" height="20"> </a>
 	</div>

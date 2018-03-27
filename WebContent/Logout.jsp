@@ -9,11 +9,17 @@
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<%
+		//invalidating the session
+		   HttpSession session1=request.getSession();  
+           session1.invalidate();  
+	 %>
 	<h1>You have successfully Logged out!</h1>
 	<div class="form-group">
   		<label>Login again</label>
+  		<br/><br/>
   		<div>
-  			<form action="" method="get">
+  			<form action="index.html" method="get">
 				<input type="submit" value="Login" class="btn btn-secondary">
 			</form>
   		</div>

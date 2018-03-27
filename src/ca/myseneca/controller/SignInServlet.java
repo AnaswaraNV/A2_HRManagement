@@ -43,16 +43,14 @@ public class SignInServlet extends HttpServlet {
         	// set User object in request object and and forward to LoginSuccess.jsp page
             request.setAttribute("credentials", credentials );
         
+            //setting the user id as a session variable
+            String userId = credentials.getSecId();  
+            HttpSession Session_UserId=request.getSession();  
+            Session_UserId.setAttribute("userId",userId);  
+
             getServletContext().getRequestDispatcher("/EmployeeList.jsp")
             .forward(request, response);
-            //response.sendRedirect("LoginSuccess.jsp");
-            
-            //If user is valid , we have to set the username as an application level 
-            //variable , then only user name can be retrieved in all the jsp pages 
-            ServletContext application = getServletConfig().getServletContext();  
-
-            String userId = credentials.getSecId();  
-            application.setAttribute("userId", userId);  
+                          
 
         } else {
         	
