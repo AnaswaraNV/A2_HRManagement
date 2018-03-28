@@ -71,7 +71,7 @@
 			</td>	
 			<td><%=employee.getJobId()%></td>
 			<td><%=employee.getSalary()%></td>
-			<td><%=employee.getEmail()%></td>
+			<td><a href="mailto:<%=employee.getEmail().toLowerCase()+ "@myseneca.ca" %>?Subject=I%20thought%20you%20might%20like%20to%20read%20this"><%=employee.getEmail().toLowerCase()+ "@myseneca.ca" %></a></td>
 			<td><%=employee.getPhoneNumber()%></td>
 		
 		</tr>
