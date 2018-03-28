@@ -5,6 +5,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Employee;
@@ -18,8 +19,9 @@ public class EmployeeListServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	List<Employee> empList = null;
+	
 	public EmployeeListServlet() {
-		// TODO Auto-generated constructor stub
+	
 	}
 	    @Override
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -33,25 +35,45 @@ public class EmployeeListServlet extends HttpServlet {
 	            
 	        } else if (request.getParameter("empByIDButton") != null) {
 	        	
-	           // daObject.getEmpByDepartmentID;
-	    
-	        }// else {
-	            // ???
-	        //}
+	        	//getting the id from user input 
+	        	String depId = request.getParameter("DepId");
+	        	int depId1 = depIdValidation(depId);
+	        	//Get employees by department id	
+	            empList  = DataAccess.getEmployeesByDepartmentId(depId1);
+	            
+	        }
 	        
-	        System.out.println("######test");
-	        System.out.println(empList.toString());
+	        //System.out.println("######test");
+	        //System.out.println(empList.toString());
 	     // set employee list attribute to the employee list page 
             request.setAttribute("employeeList", empList );
             getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp")
 	        .forward(request, response);
             
-           
- 
             //System.out.println("hows" + data_rtrvd);
 	    }
 
-	    @Override
+	    private int depIdValidation(String depId) {
+			int departmentID = 0; 
+			
+			if(depId.equals(null)) {
+				//TODO: handle  error page
+				System.out.println("error occured");
+			} else {
+				boolean valid = Pattern.matches("[\\d]{3,}", depId);
+				if (valid) {
+					departmentID = Integer.parseInt(depId);
+				} else {
+					//TODO: handle  error page
+					System.out.println("Not valid input");
+				}
+			}
+			
+			return departmentID;
+						
+		}
+	    
+		@Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response)  
 	    		throws ServletException, IOException {
 	        doPost(request, response);

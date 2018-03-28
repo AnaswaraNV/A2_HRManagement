@@ -2,15 +2,11 @@ package ca.myseneca.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import ca.myseneca.dataaccess.DataAccess;
-import ca.myseneca.model.Security;
 
 @WebServlet("/SearchEmployeePage")
 public class SearchEmployeeServlet extends HttpServlet {
@@ -21,7 +17,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public SearchEmployeeServlet() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override
@@ -42,12 +38,6 @@ public class SearchEmployeeServlet extends HttpServlet {
             .forward(request, response);
             //response.sendRedirect("LoginSuccess.jsp");
             
-            //If user is valid , we have to set the username as an application level 
-            //variable , then only user name can be retrieved in all the jsp pages 
-            ServletContext application = getServletConfig().getServletContext();  
-
-            //String userId = credentials.getSecId();  
-           //application.setAttribute("userId", userId);  
 
         //} else {
         	

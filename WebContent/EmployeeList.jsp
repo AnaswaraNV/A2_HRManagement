@@ -13,16 +13,14 @@
 <body>
 	<div class="container">
 	<div class="logout_container">
-		<% //receiving the global user Id
-		   //application = getServletConfig().getServletContext(); 
+		<% 
 		   //Retrieving session attribute
 		   String userId = null;
 		   HttpSession Session_UserId1=request.getSession(false);  
-        if(Session_UserId1!=null){  
-        userId=(String)Session_UserId1.getAttribute("userId");  
-        } %>
-		<Label style="border-bottom: 6px solid blue;
-    				background-color: lightgrey;">
+        	if(Session_UserId1!=null){  
+        		userId=(String)Session_UserId1.getAttribute("userId");  
+         } %>
+		<Label style="background-color: lightgrey;">
     			<%out.print(     userId);%>
     	</Label> 
 		<a href="Logout.jsp"> <img border="0" alt="logout"
@@ -57,9 +55,7 @@
     		<input type="submit" name="allEmpButton" value="Show All Employees" class="btn btn-secondary"/> 
        </div>
 </form>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-		<p class="text-white" align="center">CJV805 - A2 HRManagement</p>
-	</nav>
+	<jsp:include page="/footer.jsp" />
 </div>
 </body>
 </html>
