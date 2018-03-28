@@ -40,8 +40,7 @@
 					Employee</a></li>
 		</ul>
 	</nav>
-  <h2>Striped Rows</h2>
-  <p>The .table-striped class adds zebra-stripes to a table:</p>            
+  <h2>Employee List</h2>          
   <table class="table table-striped">
 	<tr>
 			<th>Employee ID</th>

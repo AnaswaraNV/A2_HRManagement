@@ -7,7 +7,6 @@ package ca.myseneca.dataaccess;
 import javax.persistence.*;
 import java.util.*;
 import ca.myseneca.model.*;
-import model.Employees;
 
 public class DataAccess {
 	
@@ -131,11 +130,11 @@ public class DataAccess {
 			getEmf();
 			
 			try {
-				
+			
 				TypedQuery<Employee> query = em.createQuery(
-						"SELECT e FROM Employees e WHERE e.department.departmentId = :depId ", Employee.class);
-				
-				query.setParameter(1, depId);
+						"SELECT e FROM Employee e INNER JOIN e.department d WHERE d.departmentId = :depId ", Employee.class);
+	
+				query.setParameter("depId", depId);
 
 				// countries = query.setMaxResults(10).getResultList();
 				employeeList = query.getResultList();

@@ -30,8 +30,7 @@ public class EmployeeListServlet extends HttpServlet {
 	        if (request.getParameter("allEmpButton") != null) {
 
 	        	//Get all employees 	
-	            empList  = DataAccess.getAllEmployees();
-	            
+	            empList  = DataAccess.getAllEmployees();	            
 	            
 	        } else if (request.getParameter("empByIDButton") != null) {
 	        	
@@ -60,7 +59,7 @@ public class EmployeeListServlet extends HttpServlet {
 				//TODO: handle  error page
 				System.out.println("error occured");
 			} else {
-				boolean valid = Pattern.matches("[\\d]{3,}", depId);
+				boolean valid = Pattern.matches("[\\d]{2,}", depId);
 				if (valid) {
 					departmentID = Integer.parseInt(depId);
 				} else {
