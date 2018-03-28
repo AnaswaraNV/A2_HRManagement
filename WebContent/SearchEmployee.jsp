@@ -18,10 +18,10 @@
 		   String userId = null;
 		   HttpSession Session_UserId=request.getSession(false);  
         if(Session_UserId!=null){  
-        userId=(String)Session_UserId.getAttribute("userId");  
+        	userId=(String)Session_UserId.getAttribute("userId");  
         } %>
 		<Label style="background-color: lightgrey;">
-    			<%out.print(     userId);%>
+    			<%out.print(userId);%>
     	</Label> 
 		<a href="Logout.jsp"> <img border="0" alt="logout"
 			src="images/logout.jpg" width="20" height="20"> </a>
