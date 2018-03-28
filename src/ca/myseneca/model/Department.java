@@ -33,6 +33,8 @@ public class Department implements Serializable {
 	@OneToMany(mappedBy="department")
 	private List<Employee> employees;
 
+
+
 	public Department() {
 	}
 
@@ -88,6 +90,15 @@ public class Department implements Serializable {
 		employee.setDepartment(null);
 
 		return employee;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + ", locationId="
+				+ locationId + ", managerId=" + managerId + ", employees=" + employees + "]";
 	}
 
 }

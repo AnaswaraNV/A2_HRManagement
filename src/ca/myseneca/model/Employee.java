@@ -55,6 +55,9 @@ public class Employee implements Serializable {
 	@OneToOne(mappedBy="employee")
 	private Security security;
 
+	@Transient
+	private String fullName;
+	
 	public Employee() {
 	}
 
@@ -153,5 +156,17 @@ public class Employee implements Serializable {
 	public void setSecurity(Security security) {
 		this.security = security;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "[" + employeeId +  " " + commissionPct + " " + email + " "
+ 				+ " " + firstName + " " + hireDate + " " + jobId + " " + lastName
+				+ " "+ managerId + " " + phoneNumber + " " + salary + " "
+				+ department + " "  + security + "]";
+	}
+
 
 }
