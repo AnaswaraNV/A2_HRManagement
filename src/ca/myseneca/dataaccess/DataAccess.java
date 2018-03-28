@@ -7,6 +7,7 @@ package ca.myseneca.dataaccess;
 import javax.persistence.*;
 import java.util.*;
 import ca.myseneca.model.*;
+import model.Employees;
 
 public class DataAccess {
 	
@@ -112,6 +113,7 @@ public class DataAccess {
 			
 			return employeeList;
 		}
+
 		
 		// Get Employees by Department - PreparedStatement
 		/*
@@ -121,50 +123,28 @@ public class DataAccess {
 		 * 
 		 * @return an ArrayList of Employees in the corresponding Department
 		 */
-		/*public static ArrayList<Employee> getEmployeesByDepartmentID(int depid) {
+		public static List<Employee> getEmployeesByDepartmentId(int depId) {
+			
 			employeeList.clear();
+			
+			//getting entity manager
 			getEmf();
 			
 			try {
-				// get the named query
-				TypedQuery<Employee> query = em.createNamedQuery("Employee.findAll", Employee.class);
+				
+				TypedQuery<Employee> query = em.createQuery(
+						"SELECT e FROM Employees e WHERE e.department.departmentId = :depId ", Employee.class);
+				
+				query.setParameter(1, depId);
 
-				employeeList = (ArrayList<Employee>) query.getResultList();
+				// countries = query.setMaxResults(10).getResultList();
+				employeeList = query.getResultList();
 
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			} finally {
 				closeEntityManager();
 			}
-			
 			return employeeList;
-			employeeList.clear();
-			if (connection != null) {
-				try {
-					ResultSet resultSet = null;
-
-					String query = "SELECT * FROM EMPLOYEES WHERE DEPARTMENT_ID = ? ORDER BY EMPLOYEE_ID";
-
-					//prepare the statement and set all the values
-					pstatement = connection.prepareStatement(query);
-					pstatement.setInt(1, depid);
-
-					resultSet = pstatement.executeQuery();
-
-					while (resultSet.next()) {
-						Employee e = new Employee(resultSet.getInt("EMPLOYEE_ID"), resultSet.getString("FIRST_NAME"),
-								resultSet.getString("LAST_NAME"), resultSet.getString("EMAIL"),
-								resultSet.getString("PHONE_NUMBER"), resultSet.getString("HIRE_DATE"),
-								resultSet.getString("JOB_ID"), resultSet.getDouble("SALARY"),
-								resultSet.getDouble("COMMISSION_PCT"), resultSet.getInt("MANAGER_ID"),
-								resultSet.getInt("DEPARTMENT_ID"));
-						employeeList.add(e);
-					}
-				} catch (SQLException e) {
-					DBUtil.printSQLException(e);
-				}
-			}
-
-			return employeeList;
-		}*/
+		}
 }

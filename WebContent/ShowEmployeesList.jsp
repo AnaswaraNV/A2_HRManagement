@@ -4,15 +4,11 @@
     <%@page import="ca.myseneca.dataaccess.*"%>
     <%@page import="java.util.*" %>
     <%@page import="javax.servlet.*" %>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee List</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link href="styles/main.css" rel="stylesheet" type="text/css">
+<jsp:include page="/header.jsp" />
 </head>
 <body>            
      <div class="container">
@@ -25,8 +21,7 @@
         if(Session_UserId!=null){  
         userId=(String)Session_UserId.getAttribute("userId");  
         } %>
-		<Label style="border-bottom: 6px solid blue;
-    				background-color: lightgrey;">
+		<Label style="background-color: lightgrey;">
     			<%out.print(     userId);%>
     	</Label>
 				<a href="Logout.jsp"> <img border="0" alt="logout"
@@ -57,7 +52,7 @@
 			<th>Hire Date</th>
 			<th>Job Id</th>
 			<th>Salary</th>
-			<th style="word-wrap: break-word;">Commision pct</th>
+			<th>Commision pct</th>
 			<th>Manager Id</th>
 			<th>Department Id</th>
 		</tr>
@@ -77,19 +72,21 @@
 			<td><%=employee.getSalary()%></td>
 			<td><%=employee.getCommissionPct()%></td>
 			<td><%=employee.getManagerId()%></td>
-			<td><%=employee.getDepartment().getDepartmentId()%></td>
-			
+			<td><%
+					if(employee.getDepartment() != null) {
+						out.print(employee.getDepartment().getDepartmentId()); 
+					}
+				%>
+			</td>			
 		</tr>
 		<% } } %>
 	</table>
   <br/>
-  	<form action="" method="get">
-		<input type="submit" value="Return" class="btn btn-secondary">
-	</form>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-		<p class="text-white" align="center">CJV805 - A2 HRManagement</p>
-	</nav>
+  			<form action="EmployeeList.jsp" method="get">
+				<input type="submit" value="Return" class="btn btn-secondary">
+			</form>
+  		
+	 
 </div>
-	
 </body>
 </html>

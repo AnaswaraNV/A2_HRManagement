@@ -20,8 +20,7 @@
         if(Session_UserId!=null){  
         userId=(String)Session_UserId.getAttribute("userId");  
         } %>
-		<Label style="border-bottom: 6px solid blue;
-    				background-color: lightgrey;">
+		<Label style="background-color: lightgrey;">
     			<%out.print(     userId);%>
     	</Label> 
 		<a href="Logout.jsp"> <img border="0" alt="logout"
