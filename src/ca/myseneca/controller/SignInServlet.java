@@ -25,7 +25,7 @@ public class SignInServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-	
+	try {
      	// get request parameters for email and password
         String Id = request.getParameter("Id");
         String pwd = request.getParameter("password");
@@ -62,12 +62,18 @@ public class SignInServlet extends HttpServlet {
             //rd.forward(request, response);
         }
         
-    
+	}catch(Exception e) {
+		response.sendRedirect("errorpage.jsp");
+	}
 
 	}
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  
     		throws ServletException, IOException {
-        doPost(request, response);
+    	try { 
+    		doPost(request, response);
+    	}catch(Exception e) {
+    		response.sendRedirect("errorpage.jsp");
+    	}
     } 
 }

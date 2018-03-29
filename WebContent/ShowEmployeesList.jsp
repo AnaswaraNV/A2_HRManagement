@@ -4,6 +4,7 @@
     <%@page import="ca.myseneca.dataaccess.*"%>
     <%@page import="java.util.*" %>
     <%@page import="javax.servlet.*" %>
+    <%@page errorPage="errorpage.jsp" %>  
 <!DOCTYPE html">
 <html>
 <head>
@@ -22,7 +23,7 @@
         userId=(String)Session_UserId.getAttribute("userId");  
         } %>
 		<Label style="background-color: lightgrey;">
-    			<%out.print(     userId);%>
+    			<%out.print(userId);%>
     	</Label>
 				<a href="Logout.jsp"> <img border="0" alt="logout"
 					src="images/logout.jpg" width="20" height="20"> </a>
@@ -83,8 +84,7 @@
   <br/>
   			<form action="EmployeeList.jsp" method="get">
 				<input type="submit" value="Return" class="btn btn-secondary">
-			</form>
-  		
+			</form>	
 	 
 </div>
 </body>

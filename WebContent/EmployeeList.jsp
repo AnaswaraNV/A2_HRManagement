@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <%@page import="ca.myseneca.model.*"%>
 <%@page import="javax.servlet.*" %>
+<%@page errorPage="errorpage.jsp" %>  
 <!DOCTYPE html>
 <html>
 <head>
