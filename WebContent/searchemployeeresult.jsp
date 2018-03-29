@@ -4,6 +4,7 @@
     <%@page import="ca.myseneca.dataaccess.*"%>
     <%@page import="java.util.*" %>
     <%@page import="javax.servlet.*" %>
+    <%@page errorPage="errorpage.jsp" %>  
 <!DOCTYPE html">
 <html>
 <head>

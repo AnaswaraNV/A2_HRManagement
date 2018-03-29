@@ -25,6 +25,7 @@ public class DataAccess {
 
 		List<Security> validLogins = null;
 		validLogins = queryValidLogins();
+		closeEntityManager();
 		String secId = credentials.getSecId();
 		String secPwd = credentials.getSecPassword();
 		if(validLogins != null) { 
@@ -76,17 +77,11 @@ public class DataAccess {
 		//list of valid logins
 		List<Security> validLogins = null;
 
-		try {
 			// get the named query
 			TypedQuery<Security> query = em.createNamedQuery("Security.findValid", Security.class);
 
 			validLogins = query.getResultList();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			closeEntityManager();
-		}
+			
 		return validLogins;
 	}
 
@@ -102,18 +97,11 @@ public class DataAccess {
 
 		getEmf();
 
-		try {
 			// get the named query
 			TypedQuery<Employee> query = em.createNamedQuery("Employee.findAll", Employee.class);
 
 			employeeList = query.getResultList();
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
 			closeEntityManager();
-		}
-
 		return employeeList;
 	}
 
@@ -133,8 +121,6 @@ public class DataAccess {
 		//getting entity manager
 		getEmf();
 
-		try {
-
 			TypedQuery<Employee> query = em.createQuery(
 					"SELECT e FROM Employee e INNER JOIN e.department d WHERE d.departmentId = :depId ", Employee.class);
 
@@ -143,11 +129,8 @@ public class DataAccess {
 			// countries = query.setMaxResults(10).getResultList();
 			employeeList = query.getResultList();
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
 			closeEntityManager();
-		}
+			
 		return employeeList;
 	}
 
@@ -172,7 +155,6 @@ public class DataAccess {
 		
 		getEmf();
 		
-		try { 
 			TypedQuery<Employee> query = em.createQuery(
 					"SELECT e FROM Employee e JOIN e.department d", Employee.class);
 					
@@ -188,11 +170,7 @@ public class DataAccess {
 					}
 			 }
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
 			closeEntityManager();
-		}
 		return empList;
 	}
 
