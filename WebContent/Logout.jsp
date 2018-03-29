@@ -9,14 +9,16 @@
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<div class="container">
 	<%
 		//invalidating the session
 		   HttpSession session1=request.getSession();  
            session1.invalidate();  
 	 %>
 	<h1>You have successfully Logged out!</h1>
+	<img src="images/user.png"  /> <br/>
 	<div class="form-group">
-  		<label>Login again</label>
+  		<h2>Login again</h2>
   		<br/><br/>
   		<div>
   			<form action="index.html" method="get">
@@ -27,7 +29,7 @@
 		<p class="text-white" align="center">CJV805 - A2 HRManagement</p>
 	</nav>
   	</div>
-  	
+  	</div>
   	<br/>
   	<br/>
   	<br/>

@@ -26,6 +26,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 	
+		try { 
      	// need to get the search value from user and proceed further 
         String searchString = request.getParameter("search");
         
@@ -39,6 +40,9 @@ public class SearchEmployeeServlet extends HttpServlet {
             .forward(request, response);
             //response.sendRedirect("LoginSuccess.jsp");
         	}
+		}catch(Exception e) {
+			response.sendRedirect("errorpage.jsp");
+		}
         }
  
     @Override

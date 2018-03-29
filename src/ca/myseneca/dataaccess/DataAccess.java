@@ -24,10 +24,13 @@ public class DataAccess {
 		boolean isValidCredential = false; 
 
 		List<Security> validLogins = null;
+		
 		validLogins = queryValidLogins();
 		closeEntityManager();
+		
 		String secId = credentials.getSecId();
 		String secPwd = credentials.getSecPassword();
+		
 		if(validLogins != null) { 
 			for (Iterator<Security> loginIterator = validLogins.iterator();
 					loginIterator.hasNext();) {
