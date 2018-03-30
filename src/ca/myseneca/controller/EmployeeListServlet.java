@@ -27,6 +27,7 @@ public class EmployeeListServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				throws ServletException, IOException {
 		
+	    	try { 
 	        if (request.getParameter("allEmpButton") != null) {
 
 	        	//Get all employees 	
@@ -48,6 +49,9 @@ public class EmployeeListServlet extends HttpServlet {
             request.setAttribute("employeeList", empList );
             getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp")
 	        .forward(request, response);
+	    	} catch(Exception e) {
+	    		response.sendRedirect("errorpage.jsp");
+	    	}
             
             //System.out.println("hows" + data_rtrvd);
 	    }
@@ -55,17 +59,11 @@ public class EmployeeListServlet extends HttpServlet {
 	    private int depIdValidation(String depId) {
 			int departmentID = 0; 
 			
-			if(depId.equals(null)) {
-				//TODO: handle  error page
-				System.out.println("error occured");
-			} else {
+			if(depId != null) {
 				boolean valid = Pattern.matches("[\\d]{2,}", depId);
 				if (valid) {
 					departmentID = Integer.parseInt(depId);
-				} else {
-					//TODO: handle  error page
-					System.out.println("Not valid input");
-				}
+				} 
 			}
 			
 			return departmentID;
@@ -75,6 +73,10 @@ public class EmployeeListServlet extends HttpServlet {
 		@Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response)  
 	    		throws ServletException, IOException {
+			try { 
 	        doPost(request, response);
+			}catch(Exception e) {
+				response.sendRedirect("errorpage.jsp");
+			}
 	    } 
 	}

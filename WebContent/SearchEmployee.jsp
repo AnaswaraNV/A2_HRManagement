@@ -12,8 +12,7 @@
 <body>
 	<div class="container">
 	<div class="logout_container">
-		<% //receiving the global user Id
-		   //application = getServletConfig().getServletContext(); 
+		<%  
 		   //Retrieving session attribute
 		   String userId = null;
 		   HttpSession Session_UserId=request.getSession(false);  

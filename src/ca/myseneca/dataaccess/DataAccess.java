@@ -1,5 +1,6 @@
 /**
  * @author Anaswara 
+ *         Jonathan
  * this page fetch the credential from thedb  
  */
 package ca.myseneca.dataaccess;
@@ -24,10 +25,13 @@ public class DataAccess {
 		boolean isValidCredential = false; 
 
 		List<Security> validLogins = null;
+		
 		validLogins = queryValidLogins();
 		closeEntityManager();
+		
 		String secId = credentials.getSecId();
 		String secPwd = credentials.getSecPassword();
+		
 		if(validLogins != null) { 
 			for (Iterator<Security> loginIterator = validLogins.iterator();
 					loginIterator.hasNext();) {

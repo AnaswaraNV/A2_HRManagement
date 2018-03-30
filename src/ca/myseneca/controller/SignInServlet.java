@@ -29,7 +29,7 @@ public class SignInServlet extends HttpServlet {
      	// get request parameters for email and password
         String Id = request.getParameter("Id");
         String pwd = request.getParameter("password");
-
+        
         // store data in User object
         Security credentials = new Security();
         credentials.setSecId(Id);
