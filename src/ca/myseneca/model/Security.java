@@ -12,8 +12,8 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Security.findAll", query="SELECT s FROM Security s") , 
-	@NamedQuery(name="Security.findValid", query="SELECT s FROM Security s WHERE s.secStatus = 'A'")
+	@NamedQuery(name = "Security.findAll", query = "SELECT s FROM Security s") , 
+	@NamedQuery(name = "Security.findValid", query = "SELECT s FROM Security s WHERE s.secStatus = 'A'")
 })
 public class Security implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -24,11 +24,12 @@ public class Department implements Serializable {
 	@Column(name = "DEPARTMENT_NAME")
 	private String departmentName;
 
-	@Column(name = "LOCATION_ID")
-	private java.math.BigDecimal locationId;
-
 	@Column(name = "MANAGER_ID")
-	private java.math.BigDecimal managerId;
+	private long managerId;
+	
+	@Column(name = "LOCATION_ID")
+	private long locationId;
+
 
 	// Bidirectional many-to-one association to Employee
 	@OneToMany(mappedBy = "department")
@@ -73,26 +74,10 @@ public class Department implements Serializable {
 	}
 
 	/*
-	 * Gets the Location Id of the Department
-	 * @return the Location Id
-	 */
-	public java.math.BigDecimal getLocationId() {
-		return this.locationId;
-	}
-
-	/*
-	 * Sets the Location Id of the Department
-	 * @param locationId the new Location Id to be set
-	 */
-	public void setLocationId(java.math.BigDecimal locationId) {
-		this.locationId = locationId;
-	}
-
-	/*
 	 * Gets the Manager Id of the Department
 	 * @return the Manager Id
 	 */
-	public java.math.BigDecimal getManagerId() {
+	public long getManagerId() {
 		return this.managerId;
 	}
 
@@ -100,8 +85,24 @@ public class Department implements Serializable {
 	 * Sets the Manager Id of the Department
 	 * @param managerId the new Manager Id to be set
 	 */
-	public void setManagerId(java.math.BigDecimal managerId) {
+	public void setManagerId(long managerId) {
 		this.managerId = managerId;
+	}
+	
+	/*
+	 * Gets the Location Id of the Department
+	 * @return the Location Id
+	 */
+	public long getLocationId() {
+		return this.locationId;
+	}
+
+	/*
+	 * Sets the Location Id of the Department
+	 * @param locationId the new Location Id to be set
+	 */
+	public void setLocationId(long locationId) {
+		this.locationId = locationId;
 	}
 
 	/*
@@ -145,12 +146,12 @@ public class Department implements Serializable {
 	}
 	
 	/* 
-    * Displays the Department Information
+	 * Displays the Department Information
 	 */
 	@Override
 	public String toString() {
-		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + ", locationId="
-				+ locationId + ", managerId=" + managerId + ", employees=" + employees + "]";
+		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + ", managerId="
+				+ managerId + ", locationId=" + locationId + "]";
 	}
 
 }
