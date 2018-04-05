@@ -39,8 +39,15 @@
 			<%
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			
-				@SuppressWarnings("unchecked")
-				List<Employee> employeeList = (List<Employee>) request.getAttribute("employeeList");
+			@SuppressWarnings("unchecked")
+				//Retrieving session attribute
+			List<Employee> employeeList = null;
+			HttpSession Session_emplist = request.getSession(false);
+			if (Session_emplist != null) {
+
+				employeeList = (List<Employee>) Session_emplist.getAttribute("empList");
+			}
+				//List<Employee> employeeList = (List<Employee>) request.getAttribute("employeeList");
 				if (employeeList != null) {
 					for (Employee employee : employeeList) {
 			%>

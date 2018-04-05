@@ -38,10 +38,13 @@ public class EmployeeListServlet extends HttpServlet {
 				empList = DataAccess.getEmployeesByDepartmentId(depId1);
 			}
 			
-			// System.out.println("######test");
-			// System.out.println(empList.toString());
+
 			// set employee list attribute to the employee list page
-			request.setAttribute("employeeList", empList);
+			//request.setAttribute("employeeList", empList);
+			// setting the user id as a session variable
+			HttpSession Session_Emplist = request.getSession();
+			Session_Emplist.setAttribute("empList", empList);
+			
 			getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
 		} catch (Exception e) {
 			response.sendRedirect("errorpage.jsp");

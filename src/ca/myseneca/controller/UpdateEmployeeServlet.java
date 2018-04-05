@@ -65,12 +65,12 @@ public class UpdateEmployeeServlet extends HttpServlet {
 				int pass = DataAccess.updateEmployee(employee);
 				System.out.println(pass);
 				
-				getServletContext().getRequestDispatcher("/EmployeeList.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
 			} else if (request.getParameter("deleteButton") != null) {
 				int pass = DataAccess.deleteEmployee(employee);
 				System.out.println(pass);
 				
-				getServletContext().getRequestDispatcher("/EmployeeList.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
 			}
 			
 		} catch (Exception e) {
