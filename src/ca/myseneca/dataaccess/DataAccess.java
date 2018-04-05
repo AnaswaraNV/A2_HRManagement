@@ -273,7 +273,11 @@ public class DataAccess {
 		for (Iterator<Employee> employeeIterator = employeeList.iterator();
 				employeeIterator.hasNext();) {
 				Employee singleEmployee = employeeIterator.next();
-				boolean valid = RegExValidation(singleEmployee, searchString);
+				StringBuilder sb = new StringBuilder();
+				sb.append(".*\b");
+				sb.append(searchString);
+				sb.append("\b.*");
+				boolean valid = RegExValidation(singleEmployee, sb.toString());
 				
 				if (valid) {
 					empList.add(singleEmployee);
@@ -290,7 +294,7 @@ public class DataAccess {
 	 */
 	private static boolean RegExValidation(Employee singleEmployee, String searchString) {
 		boolean isFound = false;
-		Pattern p = Pattern.compile((searchString));
+		Pattern p = Pattern.compile(searchString);
 		
 		// creating matcher object
 		Matcher m = p.matcher(singleEmployee.toString());

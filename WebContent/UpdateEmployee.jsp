@@ -11,6 +11,21 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 <title>Update Employee</title>
+<!-- for atert to confirm deletion -->
+<script language="javascript">
+function deleteRecord(id){
+    var doIt=confirm('Do you want to delete the record?');
+  if(doIt){
+   var f=document.form;
+    f.method="post";
+    f.action='../DeleteServlet?id='+id;
+    f.submit();
+    }
+  else{
+
+    }
+}
+</script>
 </head>
 <body>
 	<div class="container">
