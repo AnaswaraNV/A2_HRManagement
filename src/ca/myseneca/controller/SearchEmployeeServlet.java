@@ -32,7 +32,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 			
 			if (empList != null) {
 				request.setAttribute("employeeList", empList);
-				getServletContext().getRequestDispatcher("/searchemployeeresult.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/SearchEmployeeResult.jsp").forward(request, response);
 				// response.sendRedirect("LoginSuccess.jsp");
 			}
 		} catch (Exception e) {

@@ -24,7 +24,7 @@
 			<div class="form-group">
 				<label class="emp-list-label">Department Id:</label> 
 				<br/> 
-				<input class="form-control" name="depId" type="text"/> 
+				<input class="form-control" name="depId" type="number" min="0"/> 
 				<br/> <br/> 
 				<input class="btn btn-secondary" name="empByIDButton" type="submit" value="Show Department Employees"/>
 				<br/> <br/>

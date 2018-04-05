@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="WebContent/WEB-INF/classes" path="src"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -14,13 +14,13 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/Anaswara/Apache 8.0/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ojdbc8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ojdbc8.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

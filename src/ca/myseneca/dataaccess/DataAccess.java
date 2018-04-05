@@ -273,11 +273,11 @@ public class DataAccess {
 		for (Iterator<Employee> employeeIterator = employeeList.iterator();
 				employeeIterator.hasNext();) {
 				Employee singleEmployee = employeeIterator.next();
-				StringBuilder sb = new StringBuilder();
-				sb.append(".*\b");
-				sb.append(searchString);
-				sb.append("\b.*");
-				boolean valid = RegExValidation(singleEmployee, sb.toString());
+				//StringBuilder sb = new StringBuilder();
+				//sb.append(".*\b");
+				//sb.append(searchString);
+				//sb.append("\b.*");
+				boolean valid = RegExValidation(singleEmployee, searchString.toUpperCase());
 				
 				if (valid) {
 					empList.add(singleEmployee);
@@ -296,8 +296,16 @@ public class DataAccess {
 		boolean isFound = false;
 		Pattern p = Pattern.compile(searchString);
 		
+		//getting name, email address, phone number, department
+		StringBuilder employeeDetails = new StringBuilder();
+		employeeDetails.append(singleEmployee.getFirstName() + " ");
+		employeeDetails.append(singleEmployee.getLastName() + " ");
+		employeeDetails.append(singleEmployee.getEmail() + " ");
+		employeeDetails.append(singleEmployee.getPhoneNumber() + " ");
+		employeeDetails.append(singleEmployee.getDepartment().getDepartmentId());		
+		
 		// creating matcher object
-		Matcher m = p.matcher(singleEmployee.toString());
+		Matcher m = p.matcher(employeeDetails.toString().toUpperCase());
 		if (m.find( )) {
 			isFound = true;
 		}

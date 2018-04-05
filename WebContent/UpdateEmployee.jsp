@@ -11,21 +11,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 <title>Update Employee</title>
-<!-- for atert to confirm deletion -->
-<script language="javascript">
-function deleteRecord(id){
-    var doIt=confirm('Do you want to delete the record?');
-  if(doIt){
-   var f=document.form;
-    f.method="post";
-    f.action='../DeleteServlet?id='+id;
-    f.submit();
-    }
-  else{
-
-    }
-}
-</script>
 </head>
 <body>
 	<div class="container">
@@ -95,6 +80,8 @@ function deleteRecord(id){
 				<br/> <br/>
 				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
 				<br/> <br/> <br/>
+				<input class="form-control" name="message" type="text" value="" style="visibility: hidden;"/>
+			
 			</div>
 		</form>
 	</div>
