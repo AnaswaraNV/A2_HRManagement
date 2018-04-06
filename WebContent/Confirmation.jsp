@@ -68,13 +68,6 @@
 						}
 					 %>			
 				</select>
-					<label id="Message" style="color:red"></label>
-					<% String message = " ";
-						message = request.getParameter("message"); 
-				    %>
-				<script>				
-  					document.getElementById('Message').innerHTML = '${message}'';
-				</script>
 				<br/> <br/>
 				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
 				<br/> <br/> <br/>
