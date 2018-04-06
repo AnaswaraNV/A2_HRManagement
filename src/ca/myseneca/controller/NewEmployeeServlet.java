@@ -1,6 +1,7 @@
 package ca.myseneca.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -13,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Department;
 import ca.myseneca.model.Employee;
@@ -76,7 +76,8 @@ public class NewEmployeeServlet extends HttpServlet {
 				rd.include(request, response);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 	
@@ -91,7 +92,9 @@ public class NewEmployeeServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 }

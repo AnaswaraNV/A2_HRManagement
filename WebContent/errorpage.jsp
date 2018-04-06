@@ -12,6 +12,17 @@
 	<form action="index.html" method="post">
 		<div class="form-group">
   			<p>Sorry, Java has thrown an exception.</p>
+  			<h2>Details</h2>
+	<p style="">
+		<%
+			Exception e = null;
+			e= (Exception)request.getAttribute("exception");
+			if (exception != null) {
+				exception.printStackTrace(new PrintWriter(out));
+				
+			}
+		%>
+	</p>
 			<p>To continue, click the reload button.</p>
 	  		<input type="submit" name="Reload" value="Reload" class="btn btn-secondary" /><br/>
 	  		<br/> <br/>

@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Employee;
 
-@WebServlet("/SearchEmployee")
+@WebServlet("/SearchEmp")
 public class SearchEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,11 +32,12 @@ public class SearchEmployeeServlet extends HttpServlet {
 			
 			if (empList != null) {
 				request.setAttribute("employeeList", empList);
-				getServletContext().getRequestDispatcher("/SearchEmployeeResult.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/searchemployeeresult.jsp").forward(request, response);
 				// response.sendRedirect("LoginSuccess.jsp");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
@@ -45,7 +46,8 @@ public class SearchEmployeeServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
