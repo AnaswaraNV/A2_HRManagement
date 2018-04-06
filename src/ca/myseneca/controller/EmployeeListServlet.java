@@ -37,9 +37,6 @@ public class EmployeeListServlet extends HttpServlet {
 				// Get employees by department id
 				empList = DataAccess.getEmployeesByDepartmentId(depId1);
 			}
-
-			// System.out.println("######test");
-			// System.out.println(empList.toString());
 			// set employee list attribute to the employee list page
 			//request.setAttribute("employeeList", empList);
 			// setting the user id as a session variable

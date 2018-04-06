@@ -80,7 +80,9 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 				}
 				
-				//getServletContext().getRequestDispatcher("/ShowEmployeeList.jsp").forward(request, response);
+
+				// getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
+
 			} else if (request.getParameter("deleteButton") != null) {
 				int pass = DataAccess.deleteEmployee(employee);
 				System.out.println("here$########return status" + pass);
@@ -97,6 +99,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					request.setAttribute("message", message);
 					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 				}
+
 			}
 			
 		} catch (Exception e) {
