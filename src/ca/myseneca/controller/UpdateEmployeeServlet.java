@@ -1,13 +1,11 @@
 package ca.myseneca.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,23 +58,54 @@ public class UpdateEmployeeServlet extends HttpServlet {
 			
 			Employee employee = new Employee(employeeId, firstname, lastname, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, department);
 			
-			// temporary
 			if (request.getParameter("updateButton") != null) {
 				int pass = DataAccess.updateEmployee(employee);
 				System.out.println(pass);
+				System.out.println("here$########return status" + pass);
 				
-				getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
+				request.setAttribute("pass", pass);				
+				
+				request.setAttribute("employee", employee);
+				if (pass > 0) { 
+					String message = "testing label!";
+					request.setAttribute("message", message);
+					getServletContext().getRequestDispatcher("/Confirmation.jsp").forward(request, response);
+				}
+				else {
+					System.out.println("not page $$$$$$$$$$4");
+					String message = "Updation not successful!";
+					request.setAttribute("message", message);
+					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
+				}
+				
+
+				// getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
+
 			} else if (request.getParameter("deleteButton") != null) {
 				int pass = DataAccess.deleteEmployee(employee);
-				System.out.println(pass);
+				System.out.println("here$########return status" + pass);
 				
-				getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
+				request.setAttribute("pass", pass);				
+				
+				request.setAttribute("employee", employee);
+				if (pass > 0) { 
+					getServletContext().getRequestDispatcher("/Confirmation.jsp").forward(request, response);
+				}
+				else {
+					System.out.println("not page $$$$$$$$$$4");
+					String message = "Deletion not successful!";
+					request.setAttribute("message", message);
+					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
+				}
+
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
-			//response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
+					
 		}
+
 	}
 	
 	@Override
