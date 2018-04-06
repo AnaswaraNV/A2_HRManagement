@@ -1,44 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="ca.myseneca.model.*" %>
 <%@ page import="ca.myseneca.dataaccess.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
-<title>Update Employee</title>
+<title>Confirmation Page</title>
 </head>
 <body>
 	<div class="container">
 		<%@ include file="navbar.jsp" %>
 		<br/> <br/>
 
-		<h1>Update Employee</h1>
+		<h1>Confirmation Page</h1>
 
-		<p>Update an existing employee's information</p>
+		<p>Following info has been updated/deleted</p>
 
 		<% 
 		   	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		   	
-			long empId = Long.parseLong(request.getParameter("ID"));
-			Employee emp = null;
-			
-			List<Employee> employeeList = DataAccess.getAllEmployees();
-			if (employeeList != null) {
-				for (Employee e : employeeList) {
-					if (e.getEmployeeId() == empId) {
-						emp = e;
-						break;
-					}
-				}
-			}			
+		   	Employee emp = null;
+			//long empId = Long.parseLong(request.getParameter("ID"));
+			int pass = (int)request.getAttribute("pass");
+			if (pass > 0) {
+			 emp = (Employee) request.getAttribute("employee");
+			} 
+				
 		 %>
 
-		<form action="UpdateEmployee" method="post">
+		<form>
 			<div class="form-group">
 				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="text" value="<%=emp.getEmployeeId()%>" readonly/> 
 				<br/> 
@@ -56,7 +49,7 @@
 				<br/> 
 				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="text" value="<%=emp.getSalary()%>" required/> 
 				<br/> 
-				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="number" min="0.0" max="1" step="0.1" value="<%=emp.getCommissionPct()%>"/>
+				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="text" value="<%=emp.getCommissionPct()%>" required/>
 				<br/>
 				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="text" value="<%=emp.getManagerId()%>" required/> 
 				<br/> 
@@ -75,18 +68,8 @@
 					 %>			
 				</select>
 				<br/> <br/>
-				<input class="btn btn-secondary" name="updateButton" type="submit" value="Update Employee"/>
-				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"/>
-				<br/> <br/>
-				<% String message = " " ;
-					message = (String) request.getParameter("message");
-				%>
-				<p style="color:red">${message}</p>
-				<br/>
 				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
 				<br/> <br/> <br/>
-				<input class="form-control" name="message" type="text" value="" style="visibility: hidden;"/>
-			
 			</div>
 		</form>
 	</div>
