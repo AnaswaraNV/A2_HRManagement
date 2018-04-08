@@ -34,7 +34,17 @@
 				<br/> 
 				<label class="new-emp-label">Hire Date:</label> <input class="form-control" name="hireDate" type="text" placeholder="yyyy-mm-dd" required/> 
 				<br/> 
-				<label class="new-emp-label">Job ID:</label> <input class="form-control" name="jobId" type="text" required/> 
+				<label class="new-emp-label">Job ID:</label>
+				<select name="jobId" class="form-control select-box" required>
+					<option value="default" disabled selected></option>
+					<%
+						List<String> jobList = DataAccess.getAllJobNames();
+						
+						for (String job : jobList) {
+							out.print("<option value='" + job + "'>"+ job + "</option>");
+						}
+					 %>			
+				</select>
 				<br/> 
 				<label class="new-emp-label">Salary:</label> <input class="form-control" name="salary" type="number" min="0" required/> 
 				<br/> 
@@ -46,10 +56,10 @@
 				<select name="department" class="form-control select-box" required>
 					<option value="default" disabled selected></option>
 					<%
-						List<Department> departmentList = DataAccess.getAllDepartments();
+						List<String> departmentList = DataAccess.getAllDepartmentNames();
 						
-						for (Department dep : departmentList) {
-							out.print("<option value='" + dep.getDepartmentName() + "'>"+ dep.getDepartmentName() + "</option>");
+						for (String dep : departmentList) {
+							out.print("<option value='" + dep + "'>"+ dep + "</option>");
 						}
 					 %>			
 				</select>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	<a class="navbar-brand" href=""> 
+	<a class="navbar-brand" href="#"> 
 		<img id="HRMLogo" src="images/hrmlogo.png" alt="Logo">
 	</a>
 	<ul class="nav navbar-nav">
