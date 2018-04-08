@@ -69,8 +69,8 @@
 					 %>			
 				</select>
 				<br/> <br/>
-<!-- 				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a> -->
-				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.go(-2)">
+				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a>
+				<!-- <input class="btn btn-secondary" type="button" value="Return" onclick="window.history.go(-2)">  -->
 				<br/> <br/> <br/>
 			</div>
 		</form>
