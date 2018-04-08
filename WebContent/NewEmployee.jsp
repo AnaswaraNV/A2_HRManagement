@@ -22,7 +22,7 @@
 
 		<form action="NewEmployee" method="post">
 			<div class="form-group">
-				<label class="new-emp-label">Employee ID:</label> <input class="form-control" name="employeeId" type="text" required/> 
+				<label class="new-emp-label">Employee ID:</label> <input class="form-control" name="employeeId" type="number" required/> 
 				<br/> 
 				<label class="new-emp-label">First Name:</label> <input class="form-control" name="firstname" type="text" required/> 
 				<br/>
@@ -36,15 +36,15 @@
 				<br/> 
 				<label class="new-emp-label">Job ID:</label> <input class="form-control" name="jobId" type="text" required/> 
 				<br/> 
-				<label class="new-emp-label">Salary:</label> <input class="form-control" name="salary" type="text" required/> 
+				<label class="new-emp-label">Salary:</label> <input class="form-control" name="salary" type="number" min="0" required/> 
 				<br/> 
-				<label class="new-emp-label">Commission Pct:</label> <input class="form-control" name="commissionPct" type="text" required/>
+				<label class="new-emp-label">Commission Pct:</label> <input class="form-control" name="commissionPct" type="number" min="0" max="1" step="0.01" required/>
 				<br/>
-				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="text" required/> 
+				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" required/> 
 				<br/> 
 				<label class="new-emp-label">Department:</label>
-				<select name="department" class="form-control select-box">
-					<option value="default"></option>
+				<select name="department" class="form-control select-box" required>
+					<option value="default" disabled selected></option>
 					<%
 						List<Department> departmentList = DataAccess.getAllDepartments();
 						

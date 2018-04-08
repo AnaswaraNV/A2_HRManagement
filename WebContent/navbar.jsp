@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	<a class="navbar-brand" href="EmployeeList.jsp"> 
+	<a class="navbar-brand" href=""> 
 		<img id="HRMLogo" src="images/hrmlogo.png" alt="Logo">
 	</a>
 	<ul class="nav navbar-nav">
@@ -24,7 +24,7 @@
 				userId = (String) Session_UserId.getAttribute("userId");
 			}
 		%>
-		<label class="user-label"> <% out.print("\t" + userId); %> </label> 
+		<label class="user-label"> <%=userId%> </label> 
 		<a href="Logout.jsp"> 
 			<img id="logout-icon" src="images/logout.jpg" alt="logout">
 		</a>

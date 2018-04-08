@@ -40,7 +40,7 @@
 
 		<form action="UpdateEmployee" method="post">
 			<div class="form-group">
-				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="text" value="<%=emp.getEmployeeId()%>" readonly/> 
+				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="number" value="<%=emp.getEmployeeId()%>" readonly/> 
 				<br/> 
 				<label class="new-emp-label">First Name</label> <input class="form-control" name="firstname" type="text" value="<%=emp.getFirstName()%>" required/> 
 				<br/>
@@ -54,14 +54,14 @@
 				<br/> 
 				<label class="new-emp-label">Job ID</label> <input class="form-control" name="jobId" type="text" value="<%=emp.getJobId()%>" required/> 
 				<br/> 
-				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="text" value="<%=emp.getSalary()%>" required/> 
+				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="number" min="0" value="<%=emp.getSalary()%>" required/> 
 				<br/> 
-				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="number" min="0.0" max="1" step="0.1" value="<%=emp.getCommissionPct()%>"/>
+				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="number" min="0" max="1" step="0.01" value="<%=emp.getCommissionPct()%>" required/>
 				<br/>
-				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="text" value="<%=emp.getManagerId()%>" required/> 
+				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" value="<%=emp.getManagerId()%>" required/> 
 				<br/> 
 				<label class="new-emp-label">Department</label>
-				<select name="department" class="form-control select-box">
+				<select name="department" class="form-control select-box" required>
 					<%
 						List<Department> departmentList = DataAccess.getAllDepartments();
 						

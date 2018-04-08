@@ -22,6 +22,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			System.out.println("test");
 			// need to get the search value from user and proceed further
 			String searchString = request.getParameter("search");
 
