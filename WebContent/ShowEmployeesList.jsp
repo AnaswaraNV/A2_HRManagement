@@ -39,44 +39,43 @@
 			<%
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			
-			@SuppressWarnings("unchecked")
+				@SuppressWarnings("unchecked")
 				//Retrieving session attribute
-			List<Employee> employeeList = null;
-			HttpSession Session_emplist = request.getSession(false);
-			if (Session_emplist != null) {
-
-				employeeList = (List<Employee>) Session_emplist.getAttribute("empList");
-			}
+				List<Employee> employeeList = null;
+				HttpSession Session_emplist = request.getSession(false);
+				if (Session_emplist != null) {
+					employeeList = (List<Employee>) Session_emplist.getAttribute("empList");
+				}
 				//List<Employee> employeeList = (List<Employee>) request.getAttribute("employeeList");
 				if (employeeList != null) {
 					for (Employee employee : employeeList) {
 			%>
-			<tr>
-				<td><a href="UpdateEmployee.jsp?ID=<%=employee.getEmployeeId()%>"><%=employee.getEmployeeId()%></a></td>
-				<td><%=employee.getFirstName()%></td>
-				<td><%=employee.getLastName()%></td>
-				<td><%=employee.getEmail()%></td>
-				<td><%=employee.getPhoneNumber()%></td>
-				<td><%=df.format(employee.getHireDate())%></td>
-				<td><%=employee.getJobId()%></td>
-				<td><%=employee.getSalary()%></td>
-				<td><%=employee.getCommissionPct()%></td>
-				<td><%=employee.getManagerId()%></td>
-				<td>
-					<%
-						if (employee.getDepartment() != null) {
-							out.print(employee.getDepartment().getDepartmentId());
-						}
-					%>
-				</td>
-			</tr>
+						<tr>
+							<td><a href="UpdateEmployee.jsp?ID=<%=employee.getEmployeeId()%>"><%=employee.getEmployeeId()%></a></td>
+							<td><%=employee.getFirstName()%></td>
+							<td><%=employee.getLastName()%></td>
+							<td><%=employee.getEmail()%></td>
+							<td><%=employee.getPhoneNumber()%></td>
+							<td><%=df.format(employee.getHireDate())%></td>
+							<td><%=employee.getJobId()%></td>
+							<td><%=employee.getSalary()%></td>
+							<td><%=employee.getCommissionPct()%></td>
+							<td><%=employee.getManagerId()%></td>
+							<td>
+								<%
+									if (employee.getDepartment() != null) {
+										out.print(employee.getDepartment().getDepartmentId());
+									}
+								%>
+							</td>
+						</tr>
 			<%
 					}
 				}
 			%>
 		</table>
 		<br/>
-		<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
+		<a href="EmployeeList.jsp" class="btn btn-secondary">Return</a>
 		<br/> <br/> <br/>
 	</div>
 	<%@ include file="footer.jsp" %>

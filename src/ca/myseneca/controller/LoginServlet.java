@@ -62,7 +62,6 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			response.sendRedirect("errorpage.jsp");
 		}
-
 	}
 
 	/*

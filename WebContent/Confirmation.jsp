@@ -1,12 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="ca.myseneca.model.*" %>
 <%@ page import="ca.myseneca.dataaccess.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 <title>Confirmation Page</title>
@@ -33,28 +34,28 @@
 
 		<form>
 			<div class="form-group">
-				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="text" value="<%=emp.getEmployeeId()%>" readonly/> 
+				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="number" value="<%=emp.getEmployeeId()%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">First Name</label> <input class="form-control" name="firstname" type="text" value="<%=emp.getFirstName()%>" required/> 
+				<label class="new-emp-label">First Name</label> <input class="form-control" name="firstname" type="text" value="<%=emp.getFirstName()%>" readonly/> 
 				<br/>
-				<label class="new-emp-label">Last Name</label> <input class="form-control" name="lastname" type="text" value="<%=emp.getLastName()%>" required/> 
+				<label class="new-emp-label">Last Name</label> <input class="form-control" name="lastname" type="text" value="<%=emp.getLastName()%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">Email</label> <input class="form-control" name="email" type="text" value="<%=emp.getEmail()%>" required/> 
+				<label class="new-emp-label">Email</label> <input class="form-control" name="email" type="text" value="<%=emp.getEmail()%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">Phone Number</label> <input class="form-control" name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" required/>
+				<label class="new-emp-label">Phone Number</label> <input class="form-control" name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" readonly/>
 				<br/> 
-				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" required/> 
+				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">Job ID</label> <input class="form-control" name="jobId" type="text" value="<%=emp.getJobId()%>" required/> 
+				<label class="new-emp-label">Job ID</label> <input class="form-control" name="jobId" type="text" value="<%=emp.getJobId()%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="text" value="<%=emp.getSalary()%>" required/> 
+				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="text" value="<%=emp.getSalary()%>" readonly/> 
 				<br/> 
-				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="text" value="<%=emp.getCommissionPct()%>" required/>
+				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="text" value="<%=emp.getCommissionPct()%>" readonly/>
 				<br/>
-				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="text" value="<%=emp.getManagerId()%>" required/> 
+				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" value="<%=emp.getManagerId()%>" readonly/> 
 				<br/> 
 				<label class="new-emp-label">Department</label>
-				<select name="department" class="form-control select-box">
+				<select name="department" class="form-control select-box" disabled>
 					<%
 						List<Department> departmentList = DataAccess.getAllDepartments();
 						
@@ -68,7 +69,8 @@
 					 %>			
 				</select>
 				<br/> <br/>
-				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
+<!-- 				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a> -->
+				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.go(-2)">
 				<br/> <br/> <br/>
 			</div>
 		</form>

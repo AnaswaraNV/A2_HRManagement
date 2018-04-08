@@ -20,9 +20,9 @@
 
 		<form action="SearchEmployee" method="post">
 			<div class="form-group">
-				<input type="text" name="search" required class="form-control" /> <br />
+				<input class="form-control" type="text" name="search" required/> <br/>
 				<br/> 
-				<input type="submit" name="searchButton" value="Search" class="btn btn-secondary" />
+				<input class="btn btn-secondary" type="submit" name="searchButton" value="Search"/>
 				<br/> <br/> <br/>
 			</div>
 		</form>

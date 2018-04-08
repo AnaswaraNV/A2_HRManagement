@@ -49,7 +49,6 @@ public class EmployeeListServlet extends HttpServlet {
 		} catch (Exception e) {
 			response.sendRedirect("errorpage.jsp");
 		}
-		// System.out.println("hows" + data_rtrvd);
 	}
 
 	private int depIdValidation(String depId) {
