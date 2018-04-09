@@ -24,7 +24,7 @@ import ca.myseneca.model.Employee;
 @WebServlet("/UpdateEmployee")
 public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	String message = " ";
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -69,7 +69,9 @@ public class UpdateEmployeeServlet extends HttpServlet {
 								
 				// Validate Manager ID - Manager Non-Exist Error
 				if (!checkEmployeeExists(managerId)) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
+					//message = "Manager Id does not exist!";
+					//request.setAttribute("message", message);
+				    RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Manager ID does not exist.");
 					rd.include(request, response);

@@ -30,9 +30,13 @@
 				<br/> 
 				<label class="new-emp-label">Email:</label> <input class="form-control" name="email" type="text" required/> 
 				<br/> 
-				<label class="new-emp-label">Phone Number:</label> <input class="form-control" name="phoneNumber" type="text" placeholder="000.000.0000" required/>
+				<label class="new-emp-label">Phone Number:</label> <input class="form-control" name="phoneNumber" type="text" 
+							placeholder="000.000.0000" required
+        					title="Phone number should be in valid format. e.g. 000.000.000"/>
 				<br/> 
-				<label class="new-emp-label">Hire Date:</label> <input class="form-control" name="hireDate" type="text" placeholder="yyyy-mm-dd" required/> 
+				<label class="new-emp-label">Hire Date:</label> <input class="form-control" name="hireDate" type="date" 
+						placeholder="yyyy-mm-dd" required
+						title="Date should be in valid format. e.g. YYYY-MM-DD"/> 
 				<br/> 
 				<label class="new-emp-label">Job ID:</label>
 				<select name="jobId" class="form-control select-box" required>

@@ -40,7 +40,7 @@
 
 		<form action="UpdateEmployee" method="post">
 			<div class="form-group">
-				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" type="number" value="<%=emp.getEmployeeId()%>" readonly/> 
+				<label class="new-emp-label">Employee ID</label> <input class="form-control" name="employeeId" min="100" type="number" value="<%=emp.getEmployeeId()%>" readonly/> 
 				<br/> 
 				<label class="new-emp-label">First Name</label> <input class="form-control" name="firstname" type="text" value="<%=emp.getFirstName()%>" required/> 
 				<br/>
@@ -48,9 +48,14 @@
 				<br/> 
 				<label class="new-emp-label">Email</label> <input class="form-control" name="email" type="text" value="<%=emp.getEmail()%>" required/> 
 				<br/> 
-				<label class="new-emp-label">Phone Number</label> <input class="form-control" name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" required/>
+				<label class="new-emp-label">Phone Number</label> <input class="form-control" 
+						name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" 
+						placeholder="000.000.000" required
+        				title="Phone number should be in valid format. e.g. 000.000.000"/>
 				<br/> 
-				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" required/> 
+				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="date" 
+					   value="<%=df.format(emp.getHireDate())%>" required  
+					   title="Date should be in valid format. e.g. YYYY-MM-DD" /> 
 				<br/> 
 				<label class="new-emp-label">Job ID</label>
 				<select name="jobId" class="form-control select-box" required>
@@ -88,19 +93,19 @@
 					 %>			
 				</select>
 				<br/> <br/>
-				<input class="btn btn-secondary" name="updateButton" type="submit" value="Update Employee"/>
+				<input class="btn btn-secondary" name="updateButton" type="submit" value="Update Employee"
+						onClick="return confirm('Are you sure you want to update?')"/>
 				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"
 					   onClick="return confirm('Are you sure you want to delete?')"/>
 				<br/> <br/>
-				<% String message = " " ;
-					message = (String) request.getParameter("message");
+				<% //String message = " " ;
+					//message = (String) request.getParameter("message");
 				%>
 				<p style="color:red">${message}</p>
 				<br/>
 				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
 				<br/> <br/> <br/>
-				<input class="form-control" name="message" type="text" value="" style="visibility: hidden;"/>
-			
+							
 			</div>
 		</form>
 	</div>

@@ -44,7 +44,7 @@
 				<br/> 
 				<label class="new-emp-label">Phone Number</label> <input class="form-control" name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" readonly/>
 				<br/> 
-				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" readonly/> 
+				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="date" value="<%=df.format(emp.getHireDate())%>" readonly/> 
 				<br/> 
 				<label class="new-emp-label">Job ID</label>
 				<select name="jobId" class="form-control select-box" disabled>
@@ -83,8 +83,8 @@
 					 %>			
 				</select>
 				<br/> <br/>
-<!-- 				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a> -->
-				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.go(-2)">
+ 				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a>
+				<!-- <input class="btn btn-secondary" type="button" value="Return" onclick="window.history.go(-2)"> -->
 				<br/> <br/> <br/>
 			</div>
 		</form>
