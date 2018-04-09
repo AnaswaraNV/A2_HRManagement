@@ -56,6 +56,7 @@ public class NewEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Please select a Job ID");
 					rd.include(request, response);
+					return;
 				}
 				
 				// Validate Department - Department Unselected Error
@@ -64,6 +65,7 @@ public class NewEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Please select a Department");
 					rd.include(request, response);
+					return;
 				}
 				
 				// Validate Employee ID - Employee Exists Error
@@ -72,6 +74,7 @@ public class NewEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Employee ID already exists.");
 					rd.include(request, response);
+					return;
 				}
 								
 				// Validate Manager ID - Manager Non-Exist Error
@@ -80,6 +83,7 @@ public class NewEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Manager ID does not exist.");
 					rd.include(request, response);
+					return;
 				}
 				
 				// Create the Department object to associate to the Employee

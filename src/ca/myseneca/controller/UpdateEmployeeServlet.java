@@ -55,6 +55,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Please select a Job ID");
 					rd.include(request, response);
+					return;
 				}
 				
 				// Validate Department - Department Unselected Error
@@ -63,6 +64,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Please select a Department");
 					rd.include(request, response);
+					return;
 				}
 								
 				// Validate Manager ID - Manager Non-Exist Error
@@ -71,6 +73,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					PrintWriter out = response.getWriter();
 					out.println("<p style=\"color:red;\">Manager ID does not exist.");
 					rd.include(request, response);
+					return;
 				}
 				
 				Department department = null;
@@ -135,7 +138,8 @@ public class UpdateEmployeeServlet extends HttpServlet {
 	}
 	
 	
-	/**
+	/*
+	 * 
 	 * @param request
 	 */
 	private void updateEmployeeList(HttpServletRequest request) {
