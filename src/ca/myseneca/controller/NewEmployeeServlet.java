@@ -89,7 +89,9 @@ public class NewEmployeeServlet extends HttpServlet {
 					department = departmentList.get(0);
 				}
 				
-				Employee employee = new Employee(employeeId, firstname, lastname, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, department);
+				Employee employee = new Employee(employeeId, firstname, lastname, email, 
+												 phoneNumber, hireDate, jobId, salary, 
+												 commissionPct, managerId, department);
 				
 				boolean pass = DataAccess.addEmployee(employee);
 				
@@ -113,7 +115,8 @@ public class NewEmployeeServlet extends HttpServlet {
 				rd.include(request, response);
 			}
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 	
@@ -139,7 +142,8 @@ public class NewEmployeeServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 }
