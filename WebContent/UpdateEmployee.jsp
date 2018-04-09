@@ -89,7 +89,8 @@
 				</select>
 				<br/> <br/>
 				<input class="btn btn-secondary" name="updateButton" type="submit" value="Update Employee"/>
-				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"/>
+				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"
+					   onClick="return confirm('Are you sure you want to delete?')"/>
 				<br/> <br/>
 				<% String message = " " ;
 					message = (String) request.getParameter("message");
