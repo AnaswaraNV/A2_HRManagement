@@ -26,9 +26,6 @@ import ca.myseneca.model.Employee;
 public class NewEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	/*
-	 * 
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {				
@@ -46,42 +43,93 @@ public class NewEmployeeServlet extends HttpServlet {
 			String managerIdString = request.getParameter("managerId");
 			String departmentString = request.getParameter("department");
 			
-			long employeeId = Long.parseLong(employeeIdString);
-			Date hireDate = dateformat.parse(hireDateString);
-			BigDecimal salary = new BigDecimal(salaryString);	
-			BigDecimal commissionPct = new BigDecimal(commissionPctString);	
-			long managerId = Long.parseLong(managerIdString);
-			
-			// Create the Department object to associate to the Employee
-			Department department = null;
-			List<Department> departmentList = DataAccess.getDepartmentsByName(departmentString);
-			if (departmentList != null) {
-				department = departmentList.get(0);
-			}
-			
-			Employee employee = new Employee(employeeId, firstname, lastname, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, department);
-			
-			boolean pass = DataAccess.addEmployee(employee);
-			
-			// temporary message
-			if (pass) {
+			try {
+				long employeeId = Long.parseLong(employeeIdString);
+				Date hireDate = dateformat.parse(hireDateString);
+				BigDecimal salary = new BigDecimal(salaryString);	
+				BigDecimal commissionPct = new BigDecimal(commissionPctString);	
+				long managerId = Long.parseLong(managerIdString);
+				
+				//Validate Job - Job ID Unselected Error
+				if (jobId.equals("default")) {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:red;\">Please select a Job ID");
+					rd.include(request, response);
+				}
+				
+				// Validate Department - Department Unselected Error
+				if (departmentString.equals("default")) {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:red;\">Please select a Department");
+					rd.include(request, response);
+				}
+				
+				// Validate Employee ID - Employee Exists Error
+				if (checkEmployeeExists(employeeId)) {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:red;\">Employee ID already exists.");
+					rd.include(request, response);
+				}
+								
+				// Validate Manager ID - Manager Non-Exist Error
+				if (!checkEmployeeExists(managerId)) {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:red;\">Manager ID does not exist.");
+					rd.include(request, response);
+				}
+				
+				// Create the Department object to associate to the Employee
+				Department department = null;
+				List<Department> departmentList = DataAccess.getDepartmentsByName(departmentString);
+				if (departmentList != null) {
+					department = departmentList.get(0);
+				}
+				
+				Employee employee = new Employee(employeeId, firstname, lastname, email, phoneNumber, hireDate, jobId, salary, commissionPct, managerId, department);
+				
+				boolean pass = DataAccess.addEmployee(employee);
+				
+				// Check if Database successful in adding
+				if (pass) {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:green;\">Employee successfully added.");
+					rd.include(request, response);
+				} else {
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
+					PrintWriter out = response.getWriter();
+					out.println("<p style=\"color:red;\">Employee was not added. Please try again.</p>");
+					rd.include(request, response);
+				}
+			} catch (NumberFormatException e) {
+				//Invalid Type Error
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
 				PrintWriter out = response.getWriter();
-				out.println("<p style=\"color:green;\">Employee successfully added.");
-				rd.include(request, response);
-			} else {
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-				PrintWriter out = response.getWriter();
-				out.println("<p style=\"color:red;\">Employee was not added. Please try again.</p>");
+				out.println("<p style=\"color:red;\">Input Invalid. Please try again.</p>");
 				rd.include(request, response);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			response.sendRedirect("errorpage.jsp");
 		}
 	}
 	
-	private boolean empValidation(String employeeId, String firstname, String lastname, String email, String phoneNumber, String hireDate, String jobId, String salary, String commissionPct, String managerId, String departmentId) {
-
+	/*
+	 * Checks if an Employee exists in the Database
+	 * @param empId the Employee ID to check
+	 * @return true or false depending if the Employee exists
+	 */
+	private boolean checkEmployeeExists(long empId) {
+		List<Long> idList = DataAccess.getAllEmployeeIds();
+		
+		for (Long id : idList) {
+			if (id == empId) {
+				return true;
+			}
+		}
 		
 		return false;
 	}

@@ -17,13 +17,29 @@ public class DataAccess {
 	private static EntityManager em;
 	
 	Scanner keyboard = new Scanner(System.in);
-	
-	private static List<Department> departmentList = new ArrayList<Department>();
-	private static List<Employee> employeeList = new ArrayList<Employee>();
-
 
 	/*
-	 * 
+	 * Set the entity manager object using createEntity manager method
+	 */
+	public static void getEmf() {
+		// Create the EntityManager
+		emf = Persistence.createEntityManagerFactory("HRManagement");
+		em = emf.createEntityManager();
+	}
+
+	/*
+	 * close the entity manager
+	 */
+	public static void closeEntityManager() {
+		// Close the EntityManager
+		em.close();
+		emf.close();
+	}
+	
+	/*
+	 * Checks if the username and password entered are valid
+	 * @param credentials the Security object made from username and password
+	 * @return true or false depending if the username and password match
 	 */
 	public static boolean validateCredentials(Security credentials) {
 		boolean isValidCredential = false; 
@@ -56,29 +72,9 @@ public class DataAccess {
 	}
 
 	/*
-	 * Set the entity manager object using createEntity manager method
-	 */
-	public static void getEmf() {
-		// Create the EntityManager
-		emf = Persistence.createEntityManagerFactory("HRManagement");
-		em = emf.createEntityManager();
-	}
-
-	/*
-	 * close the entity manager
-	 */
-	public static void closeEntityManager() {
-		// Close the EntityManager
-		em.close();
-		emf.close();
-	}
-
-	/*
 	 * Get the details from security db for active login
 	 */
 	private static List<Security> queryValidLogins() {
-
-		//get entity manager
 		getEmf();
 
 		//list of valid logins
@@ -97,7 +93,7 @@ public class DataAccess {
 	 * @return a list of Departments that are in the Database
 	 */
 	public static List<Department> getAllDepartments() {
-		departmentList.clear();
+		List<Department> departmentList = new ArrayList<Department>();
 		
 		getEmf();
 		
@@ -111,23 +107,41 @@ public class DataAccess {
 	}
 	
 	/*
+	 * Gets all the Department Names in the Database
+	 * @return a list of Department Names
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<String> getAllDepartmentNames() {
+		List<String> departmentList = new ArrayList<String>();
+		
+		getEmf();
+		
+		Query query = em.createQuery("SELECT DISTINCT d.departmentName FROM Department d ORDER BY d.departmentName");
+		departmentList = query.getResultList();
+		
+		closeEntityManager();
+		
+		return departmentList;
+	}
+	
+	/*
 	 * Get the Departments that matches a Department name given
 	 * @param departmentName the Department name to search for
 	 * @return a list of Departments that match the name
 	 */
 	public static List<Department> getDepartmentsByName(String departmentName) {
-		getEmf();
+		List<Department> departmentList = new ArrayList<Department>();
 		
-		List<Department> dep = null;
+		getEmf();
 		
 		TypedQuery<Department> query = em.createQuery("SELECT d FROM Department d WHERE d.departmentName = :depName", Department.class);
 		query.setParameter("depName", departmentName);
 		
-		dep = query.getResultList();
+		departmentList = query.getResultList();
 		
 		closeEntityManager();
 		
-		return dep;
+		return departmentList;
 	}
 	
 	/*
@@ -206,7 +220,7 @@ public class DataAccess {
 	 * @return an ArrayList of Employees in the Database
 	 */
 	public static List<Employee> getAllEmployees() {
-		employeeList.clear();
+		List<Employee> employeeList = new ArrayList<Employee>();
 
 		getEmf();
 
@@ -219,7 +233,38 @@ public class DataAccess {
 		return employeeList;
 	}
 
-
+	/*
+	 * Get all Employee IDs existing in the Database
+	 * @return a list of Employee IDs
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<Long> getAllEmployeeIds() {
+		List<Long> idList = new ArrayList<Long>();
+		
+		getEmf();
+		
+		Query query = em.createQuery("SELECT DISTINCT e.employeeId FROM Employee e");
+		idList = query.getResultList();
+		
+		return idList;
+	}
+	
+	/*
+	 * Gets all the Job IDs 
+	 * @return a list of Job IDs
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<String> getAllJobNames() {
+		List<String> jobList = new ArrayList<String>();
+		
+		getEmf();
+		
+		Query query = em.createQuery("SELECT DISTINCT e.jobId FROM Employee e ORDER BY e.jobId");
+		jobList = query.getResultList();
+		
+		return jobList;
+	}
+	
 	// Get Employees by Department - PreparedStatement
 	/*
 	 * Gets the Employees that are in a specific Department in the Database
@@ -227,8 +272,7 @@ public class DataAccess {
 	 * @return an List of Employees in the corresponding Department
 	 */
 	public static List<Employee> getEmployeesByDepartmentId(int depId) {
-
-		employeeList.clear();
+		List<Employee> employeeList = new ArrayList<Employee>();
 
 		//getting entity manager
 		getEmf();
@@ -255,12 +299,11 @@ public class DataAccess {
 		Double tax = (Double)storedProcedure.getOutputParameterValue("tax");*/
 
 	/*
-	 * Get the details from security db for active login
+	 * Get the details from security Database for active login
 	 * @param searchString 
 	 */
 	public static List<Employee> searchEmployee(String searchString) {
-
-		employeeList.clear();
+		List<Employee> employeeList = new ArrayList<Employee>();
 		List<Employee> empList = new ArrayList<Employee>();
 		
 		getEmf();

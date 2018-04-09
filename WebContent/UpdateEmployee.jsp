@@ -52,7 +52,20 @@
 				<br/> 
 				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" required/> 
 				<br/> 
-				<label class="new-emp-label">Job ID</label> <input class="form-control" name="jobId" type="text" value="<%=emp.getJobId()%>" required/> 
+				<label class="new-emp-label">Job ID</label>
+				<select name="jobId" class="form-control select-box" required>
+					<%
+						List<String> jobList = DataAccess.getAllJobNames();
+						
+						for (String job : jobList) {
+							if (job.equals(emp.getJobId())) {
+								out.print("<option value='" + job + "' selected>"+ job + "</option>");
+							} else {
+								out.print("<option value='" + job + "' selected>"+ job + "</option>");
+							}
+						}
+					 %>			
+				</select>
 				<br/> 
 				<label class="new-emp-label">Salary</label> <input class="form-control" name="salary" type="number" min="0" value="<%=emp.getSalary()%>" required/> 
 				<br/> 
@@ -63,13 +76,13 @@
 				<label class="new-emp-label">Department</label>
 				<select name="department" class="form-control select-box" required>
 					<%
-						List<Department> departmentList = DataAccess.getAllDepartments();
+						List<String> departmentList = DataAccess.getAllDepartmentNames();
 						
-						for (Department dep : departmentList) {
-							if (dep.getDepartmentId() == emp.getDepartment().getDepartmentId()) {
-								out.print("<option value='" + dep.getDepartmentName() + "' selected>"+ dep.getDepartmentName() + "</option>");
+						for (String dep : departmentList) {
+							if (dep.equals(emp.getDepartment().getDepartmentName())) {
+								out.print("<option value='" + dep + "' selected>"+ dep + "</option>");
 							} else {
-								out.print("<option value='" + dep.getDepartmentName() + "'>"+ dep.getDepartmentName() + "</option>");
+								out.print("<option value='" + dep + "'>"+ dep + "</option>");
 							}
 						}
 					 %>			
