@@ -8,7 +8,12 @@ import java.util.regex.Pattern;
 import ca.myseneca.model.*;
 
 /*
+ * @author Anaswara Naderi Vadakkeperatta
+ * @author Jonathan Chik
  * 
+ * This class handles the Database connections and queries.
+ * It checks for login authentication and retrieves information
+ * from the Database based on specifications.
  */
 
 public class DataAccess {
@@ -28,7 +33,7 @@ public class DataAccess {
 	}
 
 	/*
-	 * close the entity manager
+	 * Close the entity manager
 	 */
 	public static void closeEntityManager() {
 		// Close the EntityManager
@@ -72,7 +77,8 @@ public class DataAccess {
 	}
 
 	/*
-	 * Get the details from security db for active login
+	 * Get the details from Security for active login
+	 * @return 
 	 */
 	private static List<Security> queryValidLogins() {
 		getEmf();
@@ -333,7 +339,9 @@ public class DataAccess {
 	}
 
 	/*
-	 * 
+	 * Checks the 
+	 * @param singleEmployee the Employee to search if matching
+	 * @param searchString the text to search for
 	 */
 	private static boolean RegExValidation(Employee singleEmployee, String searchString) {
 		boolean isFound = false;

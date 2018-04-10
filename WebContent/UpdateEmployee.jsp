@@ -15,10 +15,14 @@
 <body>
 	<div class="container">
 		<%@ include file="navbar.jsp" %>
-		<br/> <br/>
+		<br/>
+		<% if (request.getAttribute("message") != null) { %>
+			<p class="<%=request.getAttribute("type")%>">
+				<% out.println(request.getAttribute("message")); %>
+			</p>
+		<% } %>
 
-		<h1>Update Employee</h1>
-
+		<h1>Update Employee</h1> 
 		<p>Update an existing employee's information</p>
 
 		<% 
@@ -92,11 +96,6 @@
 				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"
 					   onClick="return confirm('Are you sure you want to delete?')"/>
 				<br/> <br/>
-				<% String message = " " ;
-					message = (String) request.getParameter("message");
-				%>
-				<p style="color:red">${message}</p>
-				<br/>
 				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
 				<br/> <br/> <br/>
 				<input class="form-control" name="message" type="text" value="" style="visibility: hidden;"/>

@@ -17,7 +17,6 @@
 		<br/> <br/>
 
 		<h1>Employee List</h1>
-
 		<p>Show the employee list by entering department id or all the employees in the company</p>
 
 		<form action="ShowEmpList" method="post">

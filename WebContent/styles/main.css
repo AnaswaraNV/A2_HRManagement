@@ -28,7 +28,7 @@ label {
 	font-weight: bold;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="date"] {
 	width: 15em;
 }
 
@@ -78,6 +78,13 @@ br {
 
 .new-emp-label, .emp-list-label {
 	width: 125px;
+}
+
+.error {
+	color: red;
+}
+.success {
+	color: green;
 }
 
 /* The styles for the ids */

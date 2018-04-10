@@ -18,14 +18,22 @@ import ca.myseneca.model.Department;
 import ca.myseneca.model.Employee;
 
 /*
- * Jonathan Chi
+ * @author Anaswara Naderi Vadakkeperatta
+ * @author Jonathan Chik
  * 
+ * This page is a servlet for the Update and Delete of 
+ * an existing Employee. This will either update any 
+ * information with new info or delete the Employee from
+ * the Database entirely.
  */
 
 @WebServlet("/UpdateEmployee")
 public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/*
+	 * Method to handle the Update and Deletion of an Employee
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -49,31 +57,13 @@ public class UpdateEmployeeServlet extends HttpServlet {
 				BigDecimal salary = new BigDecimal(salaryString);	
 				BigDecimal commissionPct = new BigDecimal(commissionPctString);	
 				long managerId = Long.parseLong(managerIdString);
-				
-				//Validate Job - Job ID Unselected Error
-				if (jobId.equals("default")) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Please select a Job ID");
-					rd.include(request, response);
-					return;
-				}
-				
-				// Validate Department - Department Unselected Error
-				if (departmentString.equals("default")) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Please select a Department");
-					rd.include(request, response);
-					return;
-				}
 								
 				// Validate Manager ID - Manager Non-Exist Error
 				if (!checkEmployeeExists(managerId)) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Manager ID does not exist.");
-					rd.include(request, response);
+					String text = "Manager ID does not exist.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 					return;
 				}
 				
@@ -99,8 +89,8 @@ public class UpdateEmployeeServlet extends HttpServlet {
 						getServletContext().getRequestDispatcher("/Confirmation.jsp").forward(request, response);
 					}
 					else {
-
-						String message = "Updation not successful!";
+						String message = "Update not successful.";
+						request.setAttribute("type", "error");
 						request.setAttribute("message", message);
 						getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 					}
@@ -119,17 +109,18 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					}
 					else {
 
-						String message = "Deletion not successful!";
+						String message = "Deletion not successful.";
+						request.setAttribute("type", "error");
 						request.setAttribute("message", message);
 						getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 					}
 				}			
 			} catch (NumberFormatException e) {
-				//Invalid Type Error
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UpdateEmployee.jsp");
-				PrintWriter out = response.getWriter();
-				out.println("<p style=\"color:red;\">Input Invalid. Please try again.</p>");
-				rd.include(request, response);
+				//Invalid Type Error				
+				String message = "Input Invalid. Please try again.";
+				request.setAttribute("type", "error");
+				request.setAttribute("message", message);
+				getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			request.setAttribute("exception", e);
@@ -140,8 +131,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 	
 	
 	/*
-	 * 
-	 * @param request
+	 * Refreshes the Employee List
 	 */
 	private void updateEmployeeList(HttpServletRequest request) {
 		List<Employee> employeeList = DataAccess.getAllEmployees();
@@ -149,8 +139,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 			//updating the employee list session attribute after retrieving it
 			HttpSession Session_emplist = request.getSession();
 		   Session_emplist.setAttribute("empList", employeeList);
-	    }
-		
+	    }	
 	}
 
 	/*

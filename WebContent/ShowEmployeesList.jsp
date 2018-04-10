@@ -75,7 +75,6 @@
 				}
 			%>
 		</table>
-
 		<br/>
 		<a href="EmployeeList.jsp" class="btn btn-secondary">Return</a>
 		<br/> <br/> <br/>

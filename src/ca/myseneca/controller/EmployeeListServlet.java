@@ -26,14 +26,8 @@ public class EmployeeListServlet extends HttpServlet {
 
 	List<Employee> empList = null;
 
-	public EmployeeListServlet() {
-
-	}
-
 	/* 
-	 * @Param request
-	 * @Param response
-	 * Function to handle employee list based on users choice 
+	 * Method to handle employee list based on users choice 
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,8 +55,7 @@ public class EmployeeListServlet extends HttpServlet {
 		}
 	}
 
-	
-	/**
+	/*
 	 * Function validating department id 
 	 * @param depId
 	 * @return

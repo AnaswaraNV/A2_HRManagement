@@ -14,10 +14,14 @@
 <body>
 	<div class="container">
 		<%@ include file="navbar.jsp" %>
-		<br/> <br/>
-
+		<br/>
+		<% if (request.getAttribute("message") != null) { %>
+			<p class="<%=request.getAttribute("type")%>">
+				<% out.println(request.getAttribute("message")); %>
+			</p>
+		<% } %>
+		
 		<h1>New Employee</h1>
-
 		<p>Create a new employee</p>
 
 		<form action="NewEmployee" method="post">
@@ -36,7 +40,7 @@
 				<br/> 
 				<label class="new-emp-label">Job ID:</label>
 				<select name="jobId" class="form-control select-box" required>
-					<option value="default" disabled selected></option>
+					<option value="default" selected disabled></option>
 					<%
 						List<String> jobList = DataAccess.getAllJobNames();
 						
@@ -54,7 +58,7 @@
 				<br/> 
 				<label class="new-emp-label">Department:</label>
 				<select name="department" class="form-control select-box" required>
-					<option value="default" disabled selected></option>
+					<option value="default" selected disabled></option>
 					<%
 						List<String> departmentList = DataAccess.getAllDepartmentNames();
 						

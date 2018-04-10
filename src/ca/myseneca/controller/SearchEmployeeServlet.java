@@ -24,14 +24,13 @@ public class SearchEmployeeServlet extends HttpServlet {
 
 	List<Employee> empList = null;
 
-	public SearchEmployeeServlet() {
-
-	}
-
+	/*
+	 * Method to handle the search function to search for an Employee
+	 * based on name, email, address, phone number, or department
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			System.out.println("test");
 			// need to get the search value from user and proceed further
 			String searchString = request.getParameter("search");
 

@@ -18,7 +18,6 @@
 		<br/> <br/>
 
 		<h1>Confirmation Page</h1>
-
 		<p>Following info has been updated/deleted</p>
 
 		<% 

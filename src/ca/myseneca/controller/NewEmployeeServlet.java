@@ -1,13 +1,11 @@
 package ca.myseneca.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +29,9 @@ import ca.myseneca.model.Employee;
 public class NewEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	/*
+	 * Method to handle the creation of a new Employee
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {				
@@ -56,38 +57,38 @@ public class NewEmployeeServlet extends HttpServlet {
 				long managerId = Long.parseLong(managerIdString);
 				
 				//Validate Job - Job ID Unselected Error
-				if (jobId.equals("default")) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Please select a Job ID");
-					rd.include(request, response);
+				if (jobId.equals("default")) {				
+					String text = "Please select a Job ID.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
 					return;
 				}
 				
 				// Validate Department - Department Unselected Error
-				if (departmentString.equals("default")) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Please select a Department");
-					rd.include(request, response);
+				if (departmentString.equals("default")) {					
+					String text = "Please select a Department.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
 					return;
 				}
 				
 				// Validate Employee ID - Employee Exists Error
-				if (checkEmployeeExists(employeeId)) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Employee ID already exists.");
-					rd.include(request, response);
+				if (checkEmployeeExists(employeeId)) {					
+					String text = "Employee ID already exists.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
 					return;
 				}
 								
 				// Validate Manager ID - Manager Non-Exist Error
-				if (!checkEmployeeExists(managerId)) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Manager ID does not exist.");
-					rd.include(request, response);
+				if (!checkEmployeeExists(managerId)) {					
+					String text = "Manager ID does not exist.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
 					return;
 				}
 				
@@ -105,23 +106,25 @@ public class NewEmployeeServlet extends HttpServlet {
 				boolean pass = DataAccess.addEmployee(employee);
 				
 				// Check if Database successful in adding
-				if (pass) {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:green;\">Employee successfully added.");
-					rd.include(request, response);
-				} else {
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-					PrintWriter out = response.getWriter();
-					out.println("<p style=\"color:red;\">Employee was not added. Please try again.</p>");
-					rd.include(request, response);
+				if (pass) {					
+					String text = "Employee successfully added.";
+					request.setAttribute("type", "success");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
+				} else {					
+					String text = "Employee was not added. Please try again.";
+					request.setAttribute("type", "error");
+					request.setAttribute("message", text);
+					getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
+					return;
 				}
 			} catch (NumberFormatException e) {
-				//Invalid Type Error
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/NewEmployee.jsp");
-				PrintWriter out = response.getWriter();
-				out.println("<p style=\"color:red;\">Input Invalid. Please try again.</p>");
-				rd.include(request, response);
+				//Invalid Type Error				
+				String text = " Invalid. Please try again.";
+				request.setAttribute("type", "error");
+				request.setAttribute("message", text);
+				getServletContext().getRequestDispatcher("/NewEmployee.jsp").forward(request, response);
+				return;
 			}
 		} catch (Exception e) {
 			request.setAttribute("exception", e);

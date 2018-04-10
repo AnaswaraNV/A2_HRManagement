@@ -15,7 +15,6 @@
 		<br/> <br/>
 
 		<h1>Search For Employee</h1>
-
 		<p>Search for an employee by typing any part of name, email, address, phone number or department</p>
 
 		<form action="SearchEmployee" method="post">
