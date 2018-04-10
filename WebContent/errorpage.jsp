@@ -14,8 +14,9 @@
   			<p>Sorry, Java has thrown an exception.</p>
   			<h2>Details</h2>
 			Message:
-			<% if(exception!=null) {
-					out.print(exception.getMessage()); 
+			<% 	Exception e = (Exception) request.getAttribute("exception");
+				if(e!=null) {
+					out.print(e.getMessage()); 
 			}%>
 			<p>To continue, click the reload button.</p>
 	  		<input type="submit" name="Reload" value="Reload" class="btn btn-secondary" /><br/>

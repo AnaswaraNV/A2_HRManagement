@@ -1667,11 +1667,18 @@ pre code {
 }
 
 .table {
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 80%;
   margin-bottom: 1rem;
   background-color: transparent;
 }
+
+table-container {
+	width: 80%;
+}
+
+table.fixed { table-layout:fixed; }
+table.fixed td { overflow: hidden; }
 
 .table th,
 .table td {

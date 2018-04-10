@@ -17,9 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Department;
 import ca.myseneca.model.Employee;
-
 /*
+ * @author Anaswara Naderi Vadakkeperatta
+ * @author Jonathan Chik
  * 
+ * This page is the servlet for the employee creation 
+ * It will get the users input and validate the inputs
+ * If valid, it will create an employee and call the database 
+ * program to insert the employee. 
  */
 
 @WebServlet("/NewEmployee")

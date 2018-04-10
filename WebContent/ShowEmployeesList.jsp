@@ -10,7 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">  -->
+<link href="styles/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
 <title>Employee List</title>
 </head>
@@ -22,14 +23,14 @@
 		<h1>Employee List</h1>
 		<br/> <br/>
 		
-		<table class="table table-striped">
+		<table class="fixed table-striped ">
 			<tr>
 				<th>Employee ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email</th>
 				<th>Phone Number</th>
-				<th>Hire Date</th>
+				<th style="width: 101px; ">Hire Date</th>
 				<th>Job ID</th>
 				<th>Salary</th>
 				<th>Commission Pct</th>
@@ -74,6 +75,7 @@
 				}
 			%>
 		</table>
+
 		<br/>
 		<a href="EmployeeList.jsp" class="btn btn-secondary">Return</a>
 		<br/> <br/> <br/>

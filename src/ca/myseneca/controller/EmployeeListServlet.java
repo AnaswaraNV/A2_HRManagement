@@ -11,7 +11,13 @@ import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Employee;
 
 /*
+ * @author Anaswara Naderi Vadakkeperatta
+ * @author Jonathan Chik
  * 
+ * This page is the servlet for getting employee list 
+ * It based on the users choice. 
+ * One option is to show all employees 
+ * Other is to show employees based on department id
  */
 
 @WebServlet("/ShowEmpList")
@@ -24,6 +30,11 @@ public class EmployeeListServlet extends HttpServlet {
 
 	}
 
+	/* 
+	 * @Param request
+	 * @Param response
+	 * Function to handle employee list based on users choice 
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -39,18 +50,23 @@ public class EmployeeListServlet extends HttpServlet {
 			}
 			
 
-			// set employee list attribute to the employee list page
-			//request.setAttribute("employeeList", empList);
 			// setting the user id as a session variable
 			HttpSession Session_Emplist = request.getSession();
 			Session_Emplist.setAttribute("empList", empList);
 			
 			getServletContext().getRequestDispatcher("/ShowEmployeesList.jsp").forward(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
+	
+	/**
+	 * Function validating department id 
+	 * @param depId
+	 * @return
+	 */
 	private int depIdValidation(String depId) {
 		int departmentID = 0;
 
@@ -69,7 +85,8 @@ public class EmployeeListServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 }

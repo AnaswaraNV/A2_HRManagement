@@ -23,6 +23,10 @@
 			if (Session_UserId != null) {
 				userId = (String) Session_UserId.getAttribute("userId");
 			}
+		    if (userId == null) {
+		    		//forward request to login page
+        			request.getRequestDispatcher("/index.html").forward(request, response);
+				}
 		%>
 		<label class="user-label"> <%=userId%> </label> 
 		<a href="Logout.jsp"> 

@@ -9,6 +9,15 @@ import javax.servlet.http.*;
 import ca.myseneca.dataaccess.DataAccess;
 import ca.myseneca.model.Employee;
 
+/*
+ * @author Anaswara Naderi Vadakkeperatta
+ * @author Jonathan Chik
+ * 
+ * This page is the servlet for search employees based on user input 
+ * Search for Employee 
+ * in any part of a name, email address, phone number or department:  
+ */
+
 @WebServlet("/SearchEmployee")
 public class SearchEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +46,8 @@ public class SearchEmployeeServlet extends HttpServlet {
 				// response.sendRedirect("LoginSuccess.jsp");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
@@ -46,7 +56,8 @@ public class SearchEmployeeServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
