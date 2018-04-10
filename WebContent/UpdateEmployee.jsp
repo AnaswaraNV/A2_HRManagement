@@ -96,10 +96,8 @@
 				<input class="btn btn-secondary" name="deleteButton" type="submit" value="Delete Employee"
 					   onClick="return confirm('Are you sure you want to delete?')"/>
 				<br/> <br/>
-				<input class="btn btn-secondary" type="button" value="Return" onclick="window.history.back()">
-				<br/> <br/> <br/>
-				<input class="form-control" name="message" type="text" value="" style="visibility: hidden;"/>
-			
+				<a href="ShowEmployeesList.jsp" class="btn btn-secondary">Return</a>
+				<br/> <br/> <br/>			
 			</div>
 		</form>
 	</div>

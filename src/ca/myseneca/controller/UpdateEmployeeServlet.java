@@ -63,7 +63,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 					String text = "Manager ID does not exist.";
 					request.setAttribute("type", "error");
 					request.setAttribute("message", text);
-					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
+					getServletContext().getRequestDispatcher("/UpdateEmployee.jsp?ID=" + employeeIdString).forward(request, response);
 					return;
 				}
 				
@@ -108,7 +108,6 @@ public class UpdateEmployeeServlet extends HttpServlet {
 						getServletContext().getRequestDispatcher("/Confirmation.jsp").forward(request, response);
 					}
 					else {
-
 						String message = "Deletion not successful.";
 						request.setAttribute("type", "error");
 						request.setAttribute("message", message);
@@ -123,6 +122,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/UpdateEmployee.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("exception", e);
 			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 					

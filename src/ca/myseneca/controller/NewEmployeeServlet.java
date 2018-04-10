@@ -56,8 +56,10 @@ public class NewEmployeeServlet extends HttpServlet {
 				BigDecimal commissionPct = new BigDecimal(commissionPctString);	
 				long managerId = Long.parseLong(managerIdString);
 				
+				
+				System.out.println(jobId);
 				//Validate Job - Job ID Unselected Error
-				if (jobId.equals("default")) {				
+				if (jobId.equals("null")) {				
 					String text = "Please select a Job ID.";
 					request.setAttribute("type", "error");
 					request.setAttribute("message", text);
@@ -66,7 +68,7 @@ public class NewEmployeeServlet extends HttpServlet {
 				}
 				
 				// Validate Department - Department Unselected Error
-				if (departmentString.equals("default")) {					
+				if (departmentString.equals("null")) {					
 					String text = "Please select a Department.";
 					request.setAttribute("type", "error");
 					request.setAttribute("message", text);
