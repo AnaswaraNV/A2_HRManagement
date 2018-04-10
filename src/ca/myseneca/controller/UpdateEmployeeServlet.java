@@ -18,6 +18,7 @@ import ca.myseneca.model.Department;
 import ca.myseneca.model.Employee;
 
 /*
+ * Jonathan Chi
  * 
  */
 
@@ -174,7 +175,8 @@ public class UpdateEmployeeServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 

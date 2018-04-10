@@ -22,7 +22,7 @@
 
 		<form action="NewEmployee" method="post">
 			<div class="form-group">
-				<label class="new-emp-label">Employee ID:</label> <input class="form-control" name="employeeId" type="number" required/> 
+				<label class="new-emp-label">Employee ID:</label> <input class="form-control" name="employeeId" type="number" min="100" required/> 
 				<br/> 
 				<label class="new-emp-label">First Name:</label> <input class="form-control" name="firstname" type="text" required/> 
 				<br/>
@@ -32,7 +32,7 @@
 				<br/> 
 				<label class="new-emp-label">Phone Number:</label> <input class="form-control" name="phoneNumber" type="text" placeholder="000.000.0000" required/>
 				<br/> 
-				<label class="new-emp-label">Hire Date:</label> <input class="form-control" name="hireDate" type="text" placeholder="yyyy-mm-dd" required/> 
+				<label class="new-emp-label">Hire Date:</label> <input class="form-control" name="hireDate" type="date" placeholder="yyyy-mm-dd" required/> 
 				<br/> 
 				<label class="new-emp-label">Job ID:</label>
 				<select name="jobId" class="form-control select-box" required>
@@ -50,7 +50,7 @@
 				<br/> 
 				<label class="new-emp-label">Commission Pct:</label> <input class="form-control" name="commissionPct" type="number" min="0" max="1" step="0.01" required/>
 				<br/>
-				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" required/> 
+				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" min="100" required/> 
 				<br/> 
 				<label class="new-emp-label">Department:</label>
 				<select name="department" class="form-control select-box" required>

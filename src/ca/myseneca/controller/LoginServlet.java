@@ -60,7 +60,8 @@ public class LoginServlet extends HttpServlet {
 				// rd.forward(request, response);
 			}
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 
@@ -72,7 +73,8 @@ public class LoginServlet extends HttpServlet {
 		try {
 			doPost(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("errorpage.jsp");
+			request.setAttribute("exception", e);
+			getServletContext().getRequestDispatcher("/errorpage.jsp").forward(request, response);
 		}
 	}
 }

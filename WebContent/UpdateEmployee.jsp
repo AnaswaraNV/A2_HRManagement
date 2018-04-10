@@ -50,7 +50,7 @@
 				<br/> 
 				<label class="new-emp-label">Phone Number</label> <input class="form-control" name="phoneNumber" value="<%=emp.getPhoneNumber()%>" type="text" required/>
 				<br/> 
-				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="text" value="<%=df.format(emp.getHireDate())%>" required/> 
+				<label class="new-emp-label">Hire Date</label> <input class="form-control" name="hireDate" type="date" value="<%=df.format(emp.getHireDate())%>" required/> 
 				<br/> 
 				<label class="new-emp-label">Job ID</label>
 				<select name="jobId" class="form-control select-box" required>
@@ -71,7 +71,7 @@
 				<br/> 
 				<label class="new-emp-label">Commission Pct</label> <input class="form-control" name="commissionPct" type="number" min="0" max="1" step="0.01" value="<%=emp.getCommissionPct()%>" required/>
 				<br/>
-				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" value="<%=emp.getManagerId()%>" required/> 
+				<label class="new-emp-label">Manager ID:</label> <input class="form-control" name="managerId" type="number" min="100" value="<%=emp.getManagerId()%>" required/> 
 				<br/> 
 				<label class="new-emp-label">Department</label>
 				<select name="department" class="form-control select-box" required>
